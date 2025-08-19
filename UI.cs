@@ -88,5 +88,13 @@ namespace QuizMaker
             char correctAnswer = !string.IsNullOrEmpty(input) ? Char.ToUpper(input[0]) : ' ';
             return correctAnswer;
         }
+
+        public static char AskIfMoreQuestions()
+        {
+            Console.WriteLine("Add another question? Y/N");
+            string input = Console.ReadLine();
+            char moreQuestions = !string.IsNullOrEmpty(input) ? Char.ToUpper(input[0]) : ' ';
+            return moreQuestions;
+        }
     }
 }
