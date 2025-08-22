@@ -43,7 +43,13 @@ namespace QuizMaker
 
                 if (gameChoice == Constants.QUIZ_PLAYER)
                 {
+                    List<QuizForm> QuizList = new List<QuizForm>();
+                    //Read questions from the file
+                    Logic.ReadQuizQuestions(QuizList);
+
                     //GAME MODE - Ask user to choose a correct answer
+                    UI.PrintAnswerQuestions();
+
                 }
 
             }

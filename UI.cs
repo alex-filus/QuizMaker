@@ -18,6 +18,10 @@ namespace QuizMaker
             Console.WriteLine("Create Quiz questions.");
         }
 
+        public static void PrintAnswerQuestions()
+        {
+            Console.WriteLine("The quiz is starting. There is one correct answer. Type A, B or C.");
+        }
 
         public static void PrintGameOptions()
         {
