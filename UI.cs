@@ -18,8 +18,10 @@ namespace QuizMaker
             Console.WriteLine("Create Quiz questions.");
         }
 
+
         public static void PrintGameOptions()
         {
+
             Console.WriteLine();
             Console.WriteLine("Choose an option. Enter number 1 or 2:");
             Console.WriteLine($"{Constants.QUIZ_MAKER} - Make a quiz");
@@ -27,23 +29,35 @@ namespace QuizMaker
             Console.WriteLine();
         }
 
-        public static int CheckUserInput()
+        public static int CheckUserOptionChoice()
         {
             while (true)
             {
-                string userChoice = Console.ReadLine();
+                string userInput = Console.ReadLine();
                 int gameChoice = 0;
-                if (int.TryParse(userChoice, out gameChoice) && gameChoice == Constants.QUIZ_MAKER || gameChoice == Constants.QUIZ_PLAYER)
+                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_PLAYER)
                 {
                     return gameChoice;
                 }
 
+                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_MAKER && File.Exists(Logic.path) == true)
+                {
+                    return gameChoice;
+                }
+
+                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_MAKER && File.Exists(Logic.path) == false)
+                {
+                    Console.WriteLine("There are currently no questions saved. Please create the questions first.");
+                }
+
                 else
                 {
-                    Console.WriteLine("Incorrect input. Please enter 1 or 2 for an option.");
+                    Console.WriteLine("Incorrect option.Please enter 1 or 2");
                 }
             }
         }
+
+
 
         public static string AskForAQuestion()
         {

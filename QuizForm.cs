@@ -12,12 +12,5 @@ namespace QuizMaker
         public List<string> Answers { get; set; }
         public char CorrectAnswer { get; set; }
 
-        public QuizForm()
-        {
-            Question = UI.AskForAQuestion();
-            Answers = UI.AskForAnswers();
-            CorrectAnswer = UI.AskForCorrectAnswer();
-        }
-
     }
 }
