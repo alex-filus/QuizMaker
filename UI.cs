@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,32 +35,32 @@ namespace QuizMaker
         }
 
         public static int CheckUserOptionChoice()
+
         {
-            while (true)
+            string userInput = Console.ReadLine();
+            int gameChoice = 0;
+            if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_MAKER)
             {
-                string userInput = Console.ReadLine();
-                int gameChoice = 0;
-                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_PLAYER)
-                {
-                    return gameChoice;
-                }
-
-                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_MAKER && File.Exists(Logic.path) == true)
-                {
-                    return gameChoice;
-                }
-
-                if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_MAKER && File.Exists(Logic.path) == false)
-                {
-                    Console.WriteLine("There are currently no questions saved. Please create the questions first.");
-                }
-
-                else
-                {
-                    Console.WriteLine("Incorrect option.Please enter 1 or 2");
-                }
+                return gameChoice;
             }
+
+            if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_PLAYER && File.Exists(Logic.path) == true)
+            {
+                return gameChoice;
+            }
+
+            if (int.TryParse(userInput, out gameChoice) && gameChoice == Constants.QUIZ_PLAYER && File.Exists(Logic.path) == false)
+            {
+                Console.WriteLine("There are currently no questions saved. Please create the questions first.");
+            }
+
+            else
+            {
+                Console.WriteLine("Incorrect option.Please enter 1 or 2");
+            }
+            return -1;
         }
+
 
 
 
@@ -99,12 +100,22 @@ namespace QuizMaker
             }
         }
 
-        public static char AskForCorrectAnswer()
+        public static string AskForCorrectAnswer()
         {
-            Console.WriteLine("Enter the correct answer (A, B or C)");
-            string input = Console.ReadLine();
-            char correctAnswer = !string.IsNullOrEmpty(input) ? Char.ToUpper(input[0]) : ' ';
-            return correctAnswer;
+            while (true)
+            {
+                Console.WriteLine("Enter the correct answer (A, B or C)");
+                string correctAnswer = Console.ReadLine().ToUpper();
+                //Check if the answer is single letter from A-C
+                if (correctAnswer.Length == 1 && "ABC".Contains(correctAnswer))
+                {
+                    return correctAnswer;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter letter A, B or C.");
+                }
+            }
         }
 
         public static char AskIfMoreQuestions()
@@ -114,5 +125,6 @@ namespace QuizMaker
             char moreQuestions = !string.IsNullOrEmpty(input) ? Char.ToUpper(input[0]) : ' ';
             return moreQuestions;
         }
+
     }
 }

@@ -10,48 +10,57 @@ namespace QuizMaker
             while (true)
             {
                 //Ask the user if they want to play the quiz or create questions
-                UI.PrintGameOptions();
-                int gameChoice = UI.CheckUserOptionChoice();
-
-                if (gameChoice == Constants.QUIZ_MAKER)
+                while (true)
                 {
-                    //QUESTION MODE - Ask user to create questions, 3 possible answers and list the correct answer
-                    UI.PrintCreateQuestions();
+                    UI.PrintGameOptions();
+                    int gameChoice = UI.CheckUserOptionChoice();
 
-                    List<QuizForm> QuizList = new List<QuizForm>();
-                    while (true)
+                    if (gameChoice == Constants.QUIZ_MAKER)
                     {
-                        QuizForm quizForm = new QuizForm();
+                        //QUESTION MODE - Ask user to create questions, 3 possible answers and list the correct answer
+                        UI.PrintCreateQuestions();
 
-                        quizForm.Question = UI.AskForAQuestion();
-                        quizForm.Answers = UI.AskForAnswers();
-                        quizForm.CorrectAnswer = UI.AskForCorrectAnswer();
-
-                        QuizList.Add(quizForm);
-
-                        //Break the loop if user doesn't want to create more questions
-                        char moreQuestions = UI.AskIfMoreQuestions();
-                        if (char.ToUpper(moreQuestions) != 'Y')
+                        List<QuizForm> QuizList = new List<QuizForm>();
+                        while (true)
                         {
-                            break;
+                            QuizForm quizForm = new QuizForm();
+
+                            quizForm.Question = UI.AskForAQuestion();
+                            quizForm.Answers = UI.AskForAnswers();
+                            quizForm.CorrectAnswer = UI.AskForCorrectAnswer();
+
+                            QuizList.Add(quizForm);
+
+                            //Break the loop if user doesn't want to create more questions
+                            char moreQuestions = UI.AskIfMoreQuestions();
+                            if (char.ToUpper(moreQuestions) != 'Y')
+                            {
+                                break;
+                            }
                         }
+
+                        //Save created questions/answers to .xml
+                        Logic.SaveQuizQuestions(QuizList);
                     }
 
-                    //Save created questions/answers to .xml
-                    Logic.SaveQuizQuestions(QuizList);
+                    if (gameChoice == Constants.QUIZ_PLAYER)
+                    {
+                        //Read questions from the file
+                        List<QuizForm> QuizList = Logic.ReadQuizQuestions();
+
+                        //GAME MODE - Quiz starting message
+                        UI.PrintAnswerQuestions();
+
+                        //Generate a random question
+                        QuizForm randomQuestion = Logic.GenerateRandomQuestion(QuizList);
+                        Console.WriteLine(randomQuestion.Question);
+                        
+
+
+
+
+                    }
                 }
-
-                if (gameChoice == Constants.QUIZ_PLAYER)
-                {
-                    List<QuizForm> QuizList = new List<QuizForm>();
-                    //Read questions from the file
-                    Logic.ReadQuizQuestions(QuizList);
-
-                    //GAME MODE - Ask user to choose a correct answer
-                    UI.PrintAnswerQuestions();
-
-                }
-
             }
         }
     }

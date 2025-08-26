@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfQuizForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuizForm>
+    <Question>How many states does US have?</Question>
+    <Answers>
+      <string>51</string>
+      <string>48</string>
+      <string>50</string>
+    </Answers>
+    <CorrectAnswer>C</CorrectAnswer>
+  </QuizForm>
+  <QuizForm>
+    <Question>What is the capitol of Poland?</Question>
+    <Answers>
+      <string>Warsaw</string>
+      <string>Krakow</string>
+      <string>Gdansk</string>
+    </Answers>
+    <CorrectAnswer>A</CorrectAnswer>
+  </QuizForm>
+</ArrayOfQuizForm>

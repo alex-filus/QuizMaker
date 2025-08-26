@@ -10,7 +10,13 @@ namespace QuizMaker
     {
         public string Question { get; set; }
         public List<string> Answers { get; set; }
-        public char CorrectAnswer { get; set; }
+        public string CorrectAnswer { get; set; }
 
+
+        public override string ToString()
+        {
+            return $"Question: {Question}\nAnswers: {string.Join(", ", Answers)}\nCorrect Answer: {CorrectAnswer}";
+
+        }
     }
 }
