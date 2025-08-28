@@ -54,9 +54,23 @@ namespace QuizMaker
                         //Generate a random question
                         QuizForm randomQuestion = Logic.GenerateRandomQuestion(QuizList);
                         Console.WriteLine(randomQuestion.Question);
-                        
+                        for (int i = 0; i < randomQuestion.Answers.Count; i++)
+                        {
+                            char label = (char)('A' + i);
+                            Console.WriteLine($"{label}. {randomQuestion.Answers[i]}");
+                        }
 
-
+                        //Ask user for an answer
+                        while (true)
+                        {
+                            string answer = UI.AskForCorrectAnswer(userAnswer);
+                            if (answer.Length != 1 || !"ABC".Contains(answer))
+                            {
+                                Console.WriteLine("Invalid input. Make sure to type A, B or C.");
+                            }
+                            // if the answer matches correctAnswer, dsplay a message if (....)
+                        }
+                        //Check if the answer is correct
 
 
                     }
