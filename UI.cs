@@ -126,9 +126,10 @@ namespace QuizMaker
             return moreQuestions;
         }
 
-        public static string AskForUserAnswer(string userAnswer)
+        public static string AskForUserAnswer()
         {
-           userAnswer = Console.ReadLine().Trim().ToUpper();
+           string userAnswer = Console.ReadLine().Trim().ToUpper();
+            return userAnswer;
         }
 
     }

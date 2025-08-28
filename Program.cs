@@ -63,14 +63,23 @@ namespace QuizMaker
                         //Ask user for an answer
                         while (true)
                         {
-                            string answer = UI.AskForCorrectAnswer(userAnswer);
-                            if (answer.Length != 1 || !"ABC".Contains(answer))
+                            string userAnswer = UI.AskForUserAnswer();
+                            if (userAnswer.Length != 1 || !"ABC".Contains(userAnswer))
                             {
                                 Console.WriteLine("Invalid input. Make sure to type A, B or C.");
                             }
-                            // if the answer matches correctAnswer, dsplay a message if (....)
+                            // if the answer matches correctAnswer, display a message
+                            else if (userAnswer == randomQuestion.CorrectAnswer)
+                            {
+                                Console.WriteLine("Correct!");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Wrong answer.");
+                            }
                         }
-                        //Check if the answer is correct
+                        
 
 
                     }
