@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuizForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuizForm>
-    <Question>What color is NOT on American flag?</Question>
+    <Question>How many fingers on one hand?</Question>
     <Answers>
-      <string>white</string>
-      <string>blue</string>
-      <string>green</string>
+      <string>1</string>
+      <string>3</string>
+      <string>5</string>
     </Answers>
     <CorrectAnswer>C</CorrectAnswer>
+  </QuizForm>
+  <QuizForm>
+    <Question>How many states in the US?</Question>
+    <Answers>
+      <string>49</string>
+      <string>60</string>
+      <string>50</string>
+    </Answers>
+    <CorrectAnswer>C</CorrectAnswer>
+  </QuizForm>
+  <QuizForm>
+    <Question>Current president name?</Question>
+    <Answers>
+      <string>Trump</string>
+      <string>Biden</string>
+      <string>Smith</string>
+    </Answers>
+    <CorrectAnswer>A</CorrectAnswer>
   </QuizForm>
 </ArrayOfQuizForm>

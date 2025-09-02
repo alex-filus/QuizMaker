@@ -6,6 +6,8 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
+            int score = 0;
+
             UI.PrintWelcomeMessage();
             while (true)
             {
@@ -52,34 +54,43 @@ namespace QuizMaker
                         UI.PrintAnswerQuestions();
 
                         //Generate a random question
-                        QuizForm randomQuestion = Logic.GenerateRandomQuestion(QuizList);
-                        Console.WriteLine(randomQuestion.Question);
-                        for (int i = 0; i < randomQuestion.Answers.Count; i++)
+                        int questionCount = 0;
+                        while (questionCount < QuizList.Count)
                         {
-                            char label = (char)('A' + i);
-                            Console.WriteLine($"{label}. {randomQuestion.Answers[i]}");
-                        }
+                            QuizForm randomQuestion = Logic.GenerateRandomQuestion(QuizList);
+                            Console.WriteLine(randomQuestion.Question);
+                            for (int i = 0; i < randomQuestion.Answers.Count; i++)
+                            {
+                                char label = (char)('A' + i);
+                                Console.WriteLine($"{label}. {randomQuestion.Answers[i]}");
+                            }
 
-                        //Ask user for an answer
-                        while (true)
-                        {
-                            string userAnswer = UI.AskForUserAnswer();
-                            if (userAnswer.Length != 1 || !"ABC".Contains(userAnswer))
+                            //Ask user for an answer
+                            while (true)
                             {
-                                Console.WriteLine("Invalid input. Make sure to type A, B or C.");
+                                string userAnswer = UI.AskForUserAnswer();
+                                if (userAnswer.Length != 1 || !"ABC".Contains(userAnswer))
+                                {
+                                    Console.WriteLine("Invalid input. Make sure to type A, B or C.");
+                                }
+                                // if the answer matches correctAnswer, display a message
+                                else if (userAnswer == randomQuestion.CorrectAnswer)
+                                {
+                                    Console.WriteLine("Correct!");
+                                    score++;
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Wrong answer.");
+                                    score--;
+                                    break;
+                                }
                             }
-                            // if the answer matches correctAnswer, display a message
-                            else if (userAnswer == randomQuestion.CorrectAnswer)
-                            {
-                                Console.WriteLine("Correct!");
-                                break;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Wrong answer.");
-                            }
+
+                            Console.WriteLine($"Your score is: {score}");
+                            questionCount++;
                         }
-                        
 
 
                     }
