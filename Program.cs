@@ -25,13 +25,7 @@ namespace QuizMaker
                         List<QuizForm> QuizList = new List<QuizForm>();
                         while (true)
                         {
-                            QuizForm quizForm = new QuizForm();
-
-                            quizForm.Question = UI.AskForAQuestion();
-                            quizForm.Answers = UI.AskForAnswers();
-                            quizForm.CorrectAnswer = UI.AskForCorrectAnswer();
-
-                            QuizList.Add(quizForm);
+                            UI.CreateQuizForm();
 
                             //Break the loop if user doesn't want to create more questions
                             char moreQuestions = UI.AskIfMoreQuestions();

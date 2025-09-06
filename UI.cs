@@ -61,9 +61,6 @@ namespace QuizMaker
             return -1;
         }
 
-
-
-
         public static string AskForAQuestion()
         {
             Console.WriteLine("Enter your quiz question: ");
@@ -117,7 +114,15 @@ namespace QuizMaker
                 }
             }
         }
-
+        
+        public static QuizForm CreateQuizForm()
+        {
+            QuizForm quizForm = new QuizForm();
+            quizForm.Question = AskForAQuestion();
+            quizForm.Answers = AskForAnswers();
+            quizForm.CorrectAnswer = AskForCorrectAnswer();
+            return quizForm;
+        }
         public static char AskIfMoreQuestions()
         {
             Console.WriteLine("Add another question? Y/N");
@@ -128,7 +133,7 @@ namespace QuizMaker
 
         public static string AskForUserAnswer()
         {
-           string userAnswer = Console.ReadLine().Trim().ToUpper();
+            string userAnswer = Console.ReadLine().Trim().ToUpper();
             return userAnswer;
         }
 
